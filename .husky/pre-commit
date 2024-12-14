@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+./vendor/bin/phpstan
+if [ $? -ne 0 ]; then
+    echo "PHPStan has detected errors. Please fix them before committing.";
+    exit 1;
+fi;
+
+./vendor/bin/pest --parallel
+if [ $? -ne 0 ]; then
+    echo "Pest has detected errors. Please fix them before committing.";
+    exit 1;
+fi;
+
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep ".php\{0,1\}$") || true
+
+for FILE in $STAGED_FILES
+do
+    ./vendor/bin/pint "${FILE}" > /dev/null >&1;
+    git add "${FILE}";
+done;
+
+exit 0;
