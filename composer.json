@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.2",
         "filament/filament": "^3.2",
+        "laravel/cashier": "^15.6",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9"
     },
