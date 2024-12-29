@@ -36,7 +36,7 @@ class SubscribeAction extends Action
                 ->options(Stripe::fromConfig()->billedPeriods())
                 ->default(array_key_first(Stripe::fromConfig()->billedPeriods()))
                 ->badges([
-                    'annually' => 'Best Value',
+                    'annually' => __('Best Value'),
                 ]),
         ]);
 
