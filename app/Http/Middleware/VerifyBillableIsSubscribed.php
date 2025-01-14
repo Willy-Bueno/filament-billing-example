@@ -23,8 +23,13 @@ class VerifyBillableIsSubscribed
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $tenant = tenant(Team::class);
+        //Verifica se o Usuario e Admin do SaaS e ignora a verificação de assinatura
+        $user = $request->user();
+        if ($user && $user->is_admin) {
+            return $next($request);
+        }
 
+        $tenant = tenant(Team::class);
         $stripeConfig = Stripe::fromConfig();
 
         foreach ($stripeConfig->plans() as $plan) {

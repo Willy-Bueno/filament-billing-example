@@ -35,6 +35,7 @@ class SubscribeAction extends Action
                 ->label(__('Select your plan'))
                 ->options(Stripe::fromConfig()->billedPeriods())
                 ->default(array_key_first(Stripe::fromConfig()->billedPeriods()))
+                ->columnSpanFull()
                 ->badges([
                     'annually' => __('Best Value'),
                 ]),
@@ -43,6 +44,8 @@ class SubscribeAction extends Action
         $this->registerModalActions([
             Action::make('checkout')
                 ->label(__('Go PRO now'))
+                ->size('xl')
+                ->extraAttributes(['class' => 'w-full'])
                 ->action(function (Action $action) {
                     $actions = $action->getLivewire()->mountedActionsData;
 
