@@ -17,6 +17,9 @@ return new class() extends Migration {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('document_number')->unique();
+            $table->string('email')->unique();
+            $table->string('phone')->nullable();
             $table->string('slug')->unique();
             $table->string('stripe_id')->nullable()->index();
             $table->string('pm_type')->nullable();

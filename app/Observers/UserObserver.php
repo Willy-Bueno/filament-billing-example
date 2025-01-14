@@ -12,16 +12,19 @@ class UserObserver
     /**
      * Handle the User "created" event.
      */
+    /**
     public function created(User $user): void
     {
+
         $teamName = "{$user->name}'s Team";
 
         $user->teams()->create([
             'name' => $teamName,
             'slug' => Str::slug($teamName),
         ]);
-    }
 
+    }
+     */
     /**
      * Handle the User "updated" event.
      */

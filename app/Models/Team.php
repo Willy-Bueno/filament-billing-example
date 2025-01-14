@@ -19,6 +19,9 @@ class Team extends Model
 
     protected $fillable = [
         'slug',
+        'document_number',
+        'email',
+        'phone',
         'name',
     ];
 
@@ -26,6 +29,11 @@ class Team extends Model
      * @return BelongsToMany<User, $this>
      */
     public function members(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
     }
